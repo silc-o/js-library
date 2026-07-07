@@ -1,3 +1,5 @@
+const container = document.querySelector("#library-container");
+
 const myLibrary = [];
 
 function Book(title, author, bookPage, currentPage, description) {
@@ -28,11 +30,11 @@ function createBook(index) {
   author.textContent = myLibrary[index].author;
   const description = document.createElement("div");
   description.textContent = myLibrary[index].description;
-
+  
   bookDetails.appendChild(title);
   bookDetails.appendChild(author);
   bookDetails.appendChild(description);
-
+  
   const bookProgress = document.createElement("div");
   bookProgress.classList.add("book-progress");
   const lineOne = document.createElement("p");
@@ -60,14 +62,15 @@ function createBook(index) {
   deleteButton.classList.add("btn", "delete");
   editButton.textContent = "Edit";
   deleteButton.textContent = "Delete";
-
+  
   bookButtons.appendChild(editButton);
   bookButtons.appendChild(deleteButton);
-
+  
   bookCard.appendChild(bookDetails);
   bookCard.appendChild(bookProgress);
   bookCard.appendChild(bookButtons);
-
+  
+  bookCard.dataset.id = myLibrary[index].bookID;
   libraryContainer.appendChild(bookCard);
 }
 
@@ -81,3 +84,18 @@ function displayBooks() {
     createBook(i);
   }
 }
+
+addBookToLibrary("Neuromancer", "William Gibson", 271, 50, "A hacker is hired for a final job");
+addBookToLibrary("Snow Crash", "Neal Stephenson", 440, 0, "A pizza delivery guy in the metaverse");
+
+displayBooks();
+
+container.addEventListener('click', (event) => {
+  if (event.target.classList.contains("delete")) {
+    const card = event.target.parentElement.parentElement;
+    const bookId = card.dataset.id;
+    const index = myLibrary.findIndex(book => book.bookID === bookId);
+    myLibrary.splice(index, 1);
+    displayBooks();
+  }
+});
