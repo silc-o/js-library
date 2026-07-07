@@ -22,7 +22,7 @@ function createBook(index) {
 
   const bookDetails = document.createElement("div");
   bookDetails.classList.add("book-details")
-  const title = document.createElement("h3");
+  const title = document.createElement("h1");
   title.textContent = myLibrary[index].title;
   const author = document.createElement("em");
   author.textContent = myLibrary[index].author;
