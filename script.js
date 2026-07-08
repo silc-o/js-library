@@ -100,16 +100,38 @@ container.addEventListener('click', (event) => {
   }
 });
 
-const dialog = document.querySelector(".add-book-dialog");
-const addBookBtn = document.querySelector(".add-book-btn"); // your header button
+const dialog = document.querySelector("#add-book-dialog");
+const headerAddBookBtn = document.querySelector(".add-book-btn"); // your header button
 const closeBtn = document.querySelector("#close-dialog");
+const form = document.querySelector("#add-book-form");
 
-// open
-addBookBtn.addEventListener("click", () => {
-  dialog.showModal(); // showModal() shows it as a proper modal with backdrop
+headerAddBookBtn.addEventListener("click", () => {
+  dialog.showModal();
 });
 
-// close
 closeBtn.addEventListener("click", () => {
   dialog.close();
 });
+
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages")
+const currentPageInput = document.querySelector("#currentPage");
+const descriptionInput = document.querySelector("#description");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = titleInput.value;
+  const author = authorInput.value;
+  const pages = pagesInput.value;
+  const currentPage = currentPageInput.value; 
+  const description = descriptionInput.value;
+  
+
+  addBookToLibrary(title, author, pages, currentPage, description);
+  displayBooks();
+  dialog.close();
+});
+
+
