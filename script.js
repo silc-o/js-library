@@ -90,16 +90,6 @@ addBookToLibrary("Snow Crash", "Neal Stephenson", 440, 0, "A pizza delivery guy 
 
 displayBooks();
 
-container.addEventListener('click', (event) => {
-  if (event.target.classList.contains("delete")) {
-    const card = event.target.parentElement.parentElement;
-    const bookId = card.dataset.id;
-    const index = myLibrary.findIndex(book => book.bookID === bookId);
-    myLibrary.splice(index, 1);
-    displayBooks();
-  }
-});
-
 const dialog = document.querySelector("#add-book-dialog");
 const headerAddBookBtn = document.querySelector(".add-book-btn"); // your header button
 const closeBtn = document.querySelector("#close-dialog");
@@ -119,19 +109,60 @@ const pagesInput = document.querySelector("#pages")
 const currentPageInput = document.querySelector("#currentPage");
 const descriptionInput = document.querySelector("#description");
 
+let currentBookId = null;
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const title = titleInput.value;
-  const author = authorInput.value;
-  const pages = pagesInput.value;
-  const currentPage = currentPageInput.value; 
-  const description = descriptionInput.value;
-  
+  if (currentBookId === null) {
+    // add new book
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const currentPage = currentPageInput.value; 
+    const description = descriptionInput.value;
+    
 
-  addBookToLibrary(title, author, pages, currentPage, description);
+    addBookToLibrary(title, author, pages, currentPage, description);
+  } else {
+    // edit exisiting book
+    const book = myLibrary.find(book => book.bookID === currentBookId);
+
+    book.title = titleInput.value;
+    book.author = authorInput.value;
+    book.bookPage = pagesInput.value;
+    book.currentPage = currentPageInput.value;
+    book.description = descriptionInput.value;
+
+    currentBookId = null;
+  }
+
   displayBooks();
   dialog.close();
 });
 
+container.addEventListener('click', (event) => {
+  if (event.target.classList.contains("delete")) {
+    const card = event.target.parentElement.parentElement;
+    const bookId = card.dataset.id;
+    const index = myLibrary.findIndex(book => book.bookID === bookId);
+    myLibrary.splice(index, 1);
+    displayBooks();
+  }
+
+  if (event.target.classList.contains("edit")) {
+    const card = event.target.parentElement.parentElement;
+    const bookId = card.dataset.id;
+    const book = myLibrary.find(book => book.bookID === bookId);
+
+    titleInput.value = book.title;
+    authorInput.value = book.author;
+    pagesInput.value = book.bookPage;
+    currentPageInput.value = book.currentPage;
+    description.value = book.description;
+
+    currentBookId = bookId;
+    dialog.showModal();
+  }
+});
 
