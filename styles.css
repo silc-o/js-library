@@ -32,11 +32,29 @@ footer {
   font-weight: bold;
 }
 
+button {
+  padding: 0.5rem;
+  font-family: "Quicksand", serif;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
 #library-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 1rem;
   padding: 1rem;
+}
+
+header button {
+  width: 8%;
 }
 
 .book-card {
@@ -65,25 +83,11 @@ footer {
   justify-content: space-between
 }
 
-.btn {
-  padding: 0.5rem;
-  font-family: "Quicksand", serif;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .book-buttons .btn{
-  padding: 0.5rem;
   width: 48%;
   font-size: 1rem;
-  border-radius: 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.book-buttons .btn:hover {
-  background-color: black;
-  color: white;
-}
 
 dialog {
   border-radius: 12px;
@@ -111,15 +115,8 @@ dialog::backdrop {
 }
 
 .button-container > button {
-  font-family: "Quicksand", serif;
-  font-weight: bold;
-  cursor: pointer;
-
-  padding: 0.5rem;
   width: 42%;
   font-size: 0.9rem;
-  border-radius: 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 input, textarea {
