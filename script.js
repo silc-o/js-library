@@ -99,3 +99,17 @@ container.addEventListener('click', (event) => {
     displayBooks();
   }
 });
+
+const dialog = document.querySelector(".add-book-dialog");
+const addBookBtn = document.querySelector(".add-book-btn"); // your header button
+const closeBtn = document.querySelector("#close-dialog");
+
+// open
+addBookBtn.addEventListener("click", () => {
+  dialog.showModal(); // showModal() shows it as a proper modal with backdrop
+});
+
+// close
+closeBtn.addEventListener("click", () => {
+  dialog.close();
+});

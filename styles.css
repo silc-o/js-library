@@ -84,3 +84,50 @@ footer {
   background-color: black;
   color: white;
 }
+
+dialog {
+  border-radius: 12px;
+  border: 1px solid burlywood;
+  padding: 1rem;
+  width: 350px;
+  height: 70%;
+  overflow: hidden;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5); /* dark overlay behind the popup */
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap:0.5rem;
+}
+
+.button-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.button-container > button {
+  font-family: "Quicksand", serif;
+  font-weight: bold;
+  cursor: pointer;
+
+  padding: 0.5rem;
+  width: 42%;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+
+textarea {
+  padding: 1.5rem;
+}
