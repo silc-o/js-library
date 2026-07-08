@@ -37,21 +37,42 @@ function createBook(index) {
   
   const bookProgress = document.createElement("div");
   bookProgress.classList.add("book-progress");
+
+  const pageLineContainer = document.createElement("div");
+  pageLineContainer.classList.add("page-line-container");
+
   const lineOne = document.createElement("p");
   lineOne.textContent = "Page"
+
   const currentPage = document.createElement("p");
   currentPage.classList.add("current-page");
   currentPage.textContent = myLibrary[index].currentPage;
+
   const lineThree = document.createElement("p");
   lineThree.textContent = "of"
+
   const bookPage = document.createElement("p");
   bookPage.classList.add("bookPage");
   bookPage.textContent = myLibrary[index].bookPage;
 
-  bookProgress.appendChild(lineOne);
-  bookProgress.appendChild(currentPage);
-  bookProgress.appendChild(lineThree);
-  bookProgress.appendChild(bookPage);
+  const progressPercent = Math.round((myLibrary[index].currentPage / myLibrary[index].bookPage) * 100);
+  const progressBarContainer = document.createElement("div");
+  progressBarContainer.classList.add("progress-bar-container");
+  
+  const progressBar = document.createElement("div");
+  progressBar.classList.add("progress-bar-fill");
+  progressBar.style.width = `${progressPercent}%`;
+
+  console.log(myLibrary[index].bookPage);
+
+  progressBarContainer.appendChild(progressBar);
+
+  pageLineContainer.appendChild(lineOne);
+  pageLineContainer.appendChild(currentPage);
+  pageLineContainer.appendChild(lineThree);
+  pageLineContainer.appendChild(bookPage);
+  bookProgress.appendChild(pageLineContainer);
+  bookProgress.appendChild(progressBarContainer);
 
   const bookButtons = document.createElement("div");
   bookButtons.classList.add("book-buttons");
